@@ -5,7 +5,7 @@ import win32com.client as win32
 import os
 import time
 # from plyer import notification # copy and paste this in hidden import on auto-py-exe --> plyer.platforms.win.notification
-olalala
+
 app = qtwidget.QApplication([])
 
 class MainWindow(qtwidget.QWidget):
