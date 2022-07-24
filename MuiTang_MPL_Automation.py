@@ -61,12 +61,17 @@ class MainWindow(qtwidget.QWidget):
                                         border: 1px solid black;\
                                         padding-left: 5px")
         self.display.setText(f"Result: {e}")
+        
+    def display_reset(self):
+        self.display.setStyleSheet("background-color: #e3e1da;\
+                                        border: 1px solid black;\
+                                        padding-left: 5px")
+        self.display.setText(f"Result: Running")
     
     def pivot_table(self):
-        self.display.setText("Result: None")
-        self.display.setStyleSheet("background-color: #e3e1da;\
-                                    border: 1px solid black;\
-                                    padding-left: 5px")
+        
+        self.display_reset()
+        
         # Get time now
         now = time.strftime("%m%d%y_%H%M%S")
 
@@ -639,11 +644,10 @@ class MainWindow(qtwidget.QWidget):
             pt5.TableStyle2 = "PivotStyleMedium9"
             pt6.TableStyle2 = "PivotStyleMedium9"
             
+            self.print_success()
+            
         except Exception as e:
-            self.display.setStyleSheet("background-color: #f0553a;\
-                                        border: 1px solid black;\
-                                        padding-left: 5px")
-            self.display.setText(f"Result: {e}")
+            self.print_error(e)
         
 mw = MainWindow()
 
