@@ -56,21 +56,19 @@ class MainWindow(qtwidget.QWidget):
                                         padding-left: 5px")
         self.display.setText("Result: Success!")
         
-    def print_error(self,e):
+    def print_error(self, e):
         self.display.setStyleSheet("background-color: #f0553a;\
                                         border: 1px solid black;\
                                         padding-left: 5px")
         self.display.setText(f"Result: {e}")
         
-    def display_reset(self):
+    def print_status(self):
         self.display.setStyleSheet("background-color: #e3e1da;\
                                         border: 1px solid black;\
                                         padding-left: 5px")
         self.display.setText(f"Result: Running")
     
     def pivot_table(self):
-        
-        self.display_reset()
         
         # Get time now
         now = time.strftime("%m%d%y_%H%M%S")
@@ -80,6 +78,7 @@ class MainWindow(qtwidget.QWidget):
         fail_status = "Something went wrong!"
 
         try:
+            self.print_status()
             entries = os.listdir("C:/")
             folderName = "AP_Status"
 
