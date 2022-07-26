@@ -78,7 +78,6 @@ class MainWindow(qtwidget.QWidget):
         fail_status = "Something went wrong!"
 
         try:
-            self.print_status()
             entries = os.listdir("C:/")
             folderName = "AP_Status"
 
