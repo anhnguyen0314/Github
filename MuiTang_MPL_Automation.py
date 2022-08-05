@@ -28,9 +28,10 @@ class MainWindow(qtwidget.QWidget):
                                     border: 1px solid black;\
                                     padding-left: 5px")
         
-        btn_1 = qtwidget.QPushButton("Run 'AP Status'", self)
-        btn_2 = qtwidget.QPushButton("Run 'Accrual JE'", self)
-        btn_1.clicked.connect(self.pivot_table)
+        self.btn1 = qtwidget.QPushButton("Run 'AP Status'", self)
+        self.btn2 = qtwidget.QPushButton("Run 'Accrual JE'", self)
+        self.btn1.clicked.connect(self.pivot_table)
+        self.btn2.clicked.connect(self.pivot_table)
         
         # Set progam main layout 
         main_layout = qtwidget.QVBoxLayout()
@@ -39,8 +40,8 @@ class MainWindow(qtwidget.QWidget):
         sub_layout = qtwidget.QHBoxLayout()
         
         # Add buttons to horizontal box
-        sub_layout.addWidget(btn_1)
-        sub_layout.addWidget(btn_2)
+        sub_layout.addWidget(self.btn1)
+        sub_layout.addWidget(self.btn2)
         
         # Add horizontal layout to vertical box layout
         main_layout.addLayout(sub_layout)
@@ -49,7 +50,7 @@ class MainWindow(qtwidget.QWidget):
         
         self.setLayout(main_layout)
         self.show()
-        
+    
     def print_success(self):
         self.display.setStyleSheet("background-color: #73ba59;\
                                         border: 1px solid black;\
@@ -67,7 +68,7 @@ class MainWindow(qtwidget.QWidget):
                                         border: 1px solid black;\
                                         padding-left: 5px")
         self.display.setText(f"Result: Running")
-    
+        
     def pivot_table(self):
         
         # Get time now

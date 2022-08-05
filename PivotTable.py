@@ -1,6 +1,6 @@
 # This program takes in the only .xlsx file in the folder
 # File name and worksheet names do not matter as long as there is only one .xlsx file inside the folder at the time of import
-
+from PyQt5 import QtCore as qtcore
 import os
 import time
 import win32com.client as win32
