@@ -1,6 +1,7 @@
 import PyQt5.QtWidgets as qtwidget
 import PyQt5.QtGui as qtgui
 import PyQt5.QtCore as qtcore
+from pandas import pivot, pivot_table
 import win32com.client as win32
 import os
 import time
@@ -68,17 +69,20 @@ class MainWindow(qtwidget.QWidget):
                                         border: 1px solid black;\
                                         padding-left: 5px")
         self.display.setText(f"Result: Running")
-        
+     
+     
+     # Function for AP Status starts here ===>  
     def pivot_table(self):
+        qtcore.QTimer.singleShot(1, lambda: self.print_status())
         
-        # Get time now
-        now = time.strftime("%m%d%y_%H%M%S")
-
-        # ntf = notification
-        success_status = "SUCCESS!"
-        fail_status = "Something went wrong!"
-
         try:
+            # Get time now
+            now = time.strftime("%m%d%y_%H%M%S")
+
+            # ntf = notification
+            success_status = "SUCCESS!"
+            fail_status = "Something went wrong!"
+
             entries = os.listdir("C:/")
             folderName = "AP_Status"
 
@@ -644,10 +648,9 @@ class MainWindow(qtwidget.QWidget):
             pt6.TableStyle2 = "PivotStyleMedium9"
             
             self.print_success()
-            
         except Exception as e:
             self.print_error(e)
-        
+
 mw = MainWindow()
 
 app.exec_()
