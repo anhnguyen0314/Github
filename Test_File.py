@@ -1,55 +1,26 @@
-import PyQt5.QtWidgets as qtwidget
-import PyQt5.QtCore as qtcore
-import time
+import random
 
-app = qtwidget.QApplication([])
+# List of most common Powerball numbers based on the last 7 years
+lucky_numbers = (4,6,10,18,21,23,24,32,61,63,69)
 
-class MainWindow(qtwidget.QWidget):
-    def __init__(self):
-        super().__init__()
-        
-        # Set window title
-        self.setWindowTitle('Python')
-        
-        height = 100
-        width = 500
-        self.status = "stop"
-        
-        # Set fixed window size
-        self.setFixedHeight(height)
-        self.setFixedWidth(width)
-        self.display = qtwidget.QLabel("Label")
-        self.display.setStyleSheet("background-color: #e3e1da;\
-                                    border: 1px solid black;\
-                                    padding-left: 5px")
-        
-        self.btn1 = qtwidget.QPushButton("Button", self)
-        self.btn1.clicked.connect(self.button_action)
-        
-        # Set progam main layout 
-        main_layout = qtwidget.QVBoxLayout()
-        
-        # Create horizontal box for buttons
-        sub_layout = qtwidget.QHBoxLayout()
-        
-        # Add buttons to horizontal box
-        sub_layout.addWidget(self.btn1)
-        
-        # Add horizontal layout to vertical box layout
-        main_layout.addLayout(sub_layout)
-        main_layout.addWidget(self.display)
-        
-        
-        self.setLayout(main_layout)
-        self.show()
-
-    def button_action(self):
-        self.display.setText("First")
-        qtcore.QTimer.singleShot(100, lambda: self.test_function())
-        
-    def test_function(self):
-        self.display.setText("Second")
-        
-mw = MainWindow()
-
-app.exec_()
+# Generate 5 set of 6 non-repeated random numbers from the list with the last number smaller than 26 being the Powerball number
+for i in range(5):
+    n = 1
+    selected_numbers = []
+    while n < 7:
+        lucky_number = random.randrange(0,len(lucky_numbers))
+        # If the random number already selected, keep rolling, we don't want any repeated numbers
+        while lucky_numbers[lucky_number] in selected_numbers:
+            # Keep rolling if the selected number for the Powerball number is bigger than 26
+            while n == 6 and lucky_numbers[lucky_number] > 26:
+                lucky_number = random.randrange(0,len(lucky_numbers))
+            else:
+                lucky_number = random.randrange(0,len(lucky_numbers))
+        else:
+            # Keep rolling if the selected number for the Powerball number is bigger than 26
+            while n == 6 and lucky_numbers[lucky_number] > 26:
+                lucky_number = random.randrange(0,len(lucky_numbers))
+            else:
+                selected_numbers.append(lucky_numbers[lucky_number])
+        n += 1
+    print(selected_numbers)

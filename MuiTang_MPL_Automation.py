@@ -20,8 +20,8 @@ class MainWindow(qtwidget.QWidget):
         width = 500
         
         # Set fixed window size
-        self.setFixedHeight(height)
-        self.setFixedWidth(width)
+        # self.height(height)
+        # self.width(width)
         
         self.result = "None"
         self.display = qtwidget.QLabel(f"Result: {self.result}")
@@ -623,18 +623,24 @@ class MainWindow(qtwidget.QWidget):
             ws_1.Visible = False
 
             AP_PivotTable(pt)
+            
+            # Creating Count_PivotTable sheet
             Count_PivotTable(pt2)
             Not_Onboarded(ws_5,ws_4)
+            
+            # Creating Category_MPL sheet pivot table 1 on the left
             Category_MPL1(pt3)
             
-            pt4 = pt_cache.CreatePivotTable(ws_6.Range("L1"), "MPL Brands - Not Onboarded")
+            # Putting the position of the 2nd pivot table of Category_MPL sheet on the right starting at W1
+            pt4 = pt_cache.CreatePivotTable(ws_6.Range("W1"), "MPL Brands - Not Onboarded")
             pt4.ColumnGrand = True
             pt4.RowGrand = True    
             Category_MPL2(pt4)
             
             Category_Patco1(pt5)
             
-            pt6 = pt_cache.CreatePivotTable(ws_7.Range("L1"), "Patco Brands - Not Onboarded")
+            # Putting the position of the 2nd pivot table of Category_Patco sheet on the right starting at W1
+            pt6 = pt_cache.CreatePivotTable(ws_7.Range("W1"), "Patco Brands - Not Onboarded")
             pt6.ColumnGrand = True
             pt6.RowGrand = True
             Category_Patco2(pt6)
